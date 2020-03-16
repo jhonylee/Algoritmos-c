@@ -27,11 +27,14 @@ void push(int value){
 	printf("push: %d\n",value);
 }
 void pop(){
+	if(topstack!=NULL){
 	struct node* aux = topstack;
 	topstack = aux->next;
 	aux->next = NULL;
 	printf("pop: %d\n",aux->data);
 	freeno(&aux);
+	}
+
 }
 void clearstack(){
 	while(topstack!=NULL){

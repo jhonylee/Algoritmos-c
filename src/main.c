@@ -12,4 +12,5 @@ int main(){
 	pop();
 	push(5);
 	clearstack();
+	pop();
 }
