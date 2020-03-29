@@ -3,8 +3,6 @@
 
 #include "../header/stack.h"
 
-struct node* topstack = NULL;
-
 struct node* createno(){
 	struct node* no;
 	no = (struct node *)malloc(sizeof(int));
@@ -19,26 +17,41 @@ void freeno(struct node** no){
 	*no = NULL;
 	
 }
-void push(int value){
+void push(struct node** topstack,int value){
 	struct node* no = createno();
-	no->data = value;
-	no->next = topstack;
-	topstack = no;
-	printf("push: %d\n",value);
+	if(no != NULL){
+		no->data = value;
+		no->next = *topstack;
+		*topstack = no;
+	}
 }
-void pop(){
-	if(topstack!=NULL){
-	struct node* aux = topstack;
-	topstack = aux->next;
+void pop(struct node** topstack){
+	if(*topstack!=NULL){
+	struct node* aux = *topstack;
+	*topstack = aux->next;
 	aux->next = NULL;
-	printf("pop: %d\n",aux->data);
 	freeno(&aux);
+	aux = NULL;
+	
 	}
 
 }
-void clearstack(){
-	while(topstack!=NULL){
-		pop();
+int printstack(struct node** topstack){
+	struct node* aux = *topstack;
+	if(*topstack == NULL){
+		printf("Stack is empty\n");
+		return 0;
+	}	
+	while (aux != NULL)
+	{
+		printf("%d -> ",aux->data);
+		aux = aux->next;
 	}
-	printf("stack is empty\n");
+	printf("END\n");
+}
+void clearstack(struct node** topstack){
+	while(*topstack!=NULL){
+		pop(topstack);
+	}
+	printf("stack is empty now\n");
 }

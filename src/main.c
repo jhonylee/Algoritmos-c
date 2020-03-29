@@ -3,14 +3,25 @@
 #include"../header/stack.h"
 
 int main(){
-	push(3);
-	push(4);
-	pop();
-	push(10);
-	push(11);
-	push(27);
-	pop();
-	push(5);
-	clearstack();
-	pop();
+	struct node* topstack = NULL;
+	
+	push(&topstack,5);
+	push(&topstack,6);
+	push(&topstack,1);
+	push(&topstack,6);
+	printstack(&topstack);
+	pop(&topstack);
+	printstack(&topstack);
+	push(&topstack,0);
+	push(&topstack,3);
+	pop(&topstack);
+	push(&topstack,4);
+	push(&topstack,7);
+	
+	printstack(&topstack);
+
+	clearstack(&topstack);
+
+	printstack(&topstack);
+
 }

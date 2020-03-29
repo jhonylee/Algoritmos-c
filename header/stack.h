@@ -6,9 +6,8 @@ struct node{
 };
 struct node* createno();
 void freeno(struct node** no);
-void top();
-void push(int value);
-void pop();
-void clearstack();
-
+void push(struct node** topstack,int value);
+void pop(struct node** topstack);
+void clearstack(struct node** topstack);
+int printstack(struct node** topstack);
 #endif
